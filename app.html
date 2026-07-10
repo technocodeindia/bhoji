@@ -1,511 +1,565 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>BHOJI · food delivery</title>
-    <!-- Font & Icons (clean, modern) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Bhoj · Download App</title>
+  <!-- Font & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            background: #fef9f4;  /* warm, food-delivery vibe */
-            font-family: 'Inter', sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 1.5rem 1rem;
-            color: #1e1e2a;
-        }
+    body {
+      background: #faf3ed;  /* warm, food-delivery vibe */
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 1.2rem 0.8rem;
+      color: #1e1e2a;
+    }
 
-        .app-card {
-            max-width: 420px;
-            width: 100%;
-            background: #ffffff;
-            border-radius: 48px 48px 32px 32px;
-            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.12), 0 8px 24px -6px rgba(0, 0, 0, 0.05);
-            padding: 2rem 1.8rem 2.2rem;
-            transition: all 0.2s ease;
-            border: 1px solid rgba(255, 215, 190, 0.3);
-            backdrop-filter: blur(2px);
-        }
+    .app-card {
+      max-width: 440px;
+      width: 100%;
+      background: #ffffff;
+      border-radius: 48px 48px 32px 32px;
+      box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.15), 0 8px 20px -6px rgba(0, 0, 0, 0.05);
+      padding: 1.8rem 1.5rem 2rem;
+      transition: all 0.2s ease;
+      border: 1px solid rgba(255, 215, 190, 0.3);
+    }
 
-        /* logo & header */
-        .logo-area {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 0.5rem;
-        }
+    /* ----- LOGO (Bh + BHOJ) ----- */
+    .logo-area {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
 
-        .logo-badge {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.25rem;
-            background: #ff6b35;  /* zesty orange */
-            padding: 0.5rem 1.2rem 0.5rem 1rem;
-            border-radius: 60px;
-            color: white;
-            font-weight: 700;
-            font-size: 2.2rem;
-            letter-spacing: -0.5px;
-            box-shadow: 0 8px 16px -6px rgba(255, 107, 53, 0.3);
-            margin-bottom: 0.75rem;
-            transition: transform 0.15s ease;
-        }
+    .logo-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.2rem;
+      background: #ff6b35;
+      padding: 0.4rem 1rem 0.4rem 0.8rem;
+      border-radius: 60px;
+      color: white;
+      font-weight: 700;
+      font-size: 2rem;
+      letter-spacing: -0.5px;
+      box-shadow: 0 6px 14px -4px rgba(255, 107, 53, 0.35);
+    }
 
-        .logo-badge:hover {
-            transform: scale(1.02);
-        }
+    .logo-badge i {
+      font-size: 1.6rem;
+      color: #fff6e5;
+      margin-right: 0.1rem;
+    }
 
-        .logo-badge i {
-            font-size: 1.8rem;
-            margin-right: 0.2rem;
-            color: #fff6e5;
-        }
+    .logo-badge span {
+      background: white;
+      color: #ff6b35;
+      font-size: 1.5rem;
+      font-weight: 800;
+      padding: 0 0.3rem;
+      border-radius: 30px;
+      line-height: 1.2;
+      margin-left: 0.1rem;
+    }
 
-        .logo-badge span {
-            background: white;
-            color: #ff6b35;
-            font-size: 1.6rem;
-            font-weight: 800;
-            padding: 0 0.2rem 0 0.3rem;
-            border-radius: 30px;
-            line-height: 1;
-            margin-left: 0.1rem;
-        }
+    .logo-badge .bh-sub {
+      background: transparent;
+      color: white;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0 0.2rem;
+      letter-spacing: 0.3px;
+    }
 
-        .tagline {
-            font-size: 1rem;
-            font-weight: 500;
-            color: #4a3f3a;
-            background: #fff1e9;
-            padding: 0.4rem 1.2rem;
-            border-radius: 40px;
-            letter-spacing: -0.2px;
-            display: inline-block;
-            backdrop-filter: blur(4px);
-            border: 1px solid #ffded0;
-        }
+    .tagline-mini {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #4a3f3a;
+      background: #fff1e9;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      border: 1px solid #ffded0;
+      white-space: nowrap;
+    }
 
-        .tagline i {
-            color: #ff6b35;
-            margin-right: 6px;
-        }
+    .tagline-mini i {
+      color: #ff6b35;
+      margin-right: 4px;
+    }
 
-        /* hero image / mockup */
-        .mockup-container {
-            margin: 1.8rem 0 1.2rem;
-            display: flex;
-            justify-content: center;
-        }
+    /* ----- BANNER (inspired by Swiggy/Zomato) ----- */
+    .banner-card {
+      background: linear-gradient(145deg, #ff7a4a, #e65c2e);
+      border-radius: 28px;
+      padding: 1rem 1.2rem 0.8rem;
+      margin: 0.6rem 0 1.2rem;
+      color: white;
+      box-shadow: 0 10px 20px -6px rgba(255, 107, 53, 0.3);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
 
-        .mockup-phone {
-            background: #1e1e2a;
-            border-radius: 40px;
-            padding: 0.8rem 0.5rem 0.5rem;
-            width: 180px;
-            box-shadow: 0 20px 35px -8px rgba(0, 0, 0, 0.25);
-            border: 1px solid #3d3d4a;
-            transition: transform 0.25s ease;
-        }
+    .banner-card::after {
+      content: "🍽️";
+      position: absolute;
+      right: -10px;
+      bottom: -10px;
+      font-size: 5rem;
+      opacity: 0.15;
+      transform: rotate(10deg);
+    }
 
-        .mockup-phone:hover {
-            transform: translateY(-6px);
-        }
+    .banner-left {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      z-index: 2;
+    }
 
-        .mockup-screen {
-            background: #faf3ed;
-            border-radius: 28px;
-            padding: 1.2rem 0.8rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.6rem;
-            background-image: radial-gradient(circle at 20% 30%, #ffe8d0 0%, #f7e2d3 100%);
-        }
+    .banner-left .greeting {
+      font-size: 0.8rem;
+      font-weight: 400;
+      opacity: 0.9;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
 
-        .mockup-food-icon {
-            display: flex;
-            gap: 0.8rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
+    .banner-left .greeting i {
+      font-size: 0.9rem;
+    }
 
-        .mockup-food-icon i {
-            font-size: 1.6rem;
-            background: white;
-            padding: 0.4rem;
-            border-radius: 50px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.03);
-            color: #ff6b35;
-        }
+    .banner-left h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      line-height: 1.2;
+    }
 
-        .mockup-text {
-            font-size: 0.7rem;
-            font-weight: 600;
-            color: #1e1e2a;
-            background: rgba(255,255,255,0.6);
-            backdrop-filter: blur(4px);
-            padding: 0.2rem 1rem;
-            border-radius: 40px;
-            letter-spacing: 0.3px;
-        }
+    .banner-left .offer-tag {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(4px);
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      display: inline-block;
+      width: fit-content;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      margin-top: 0.2rem;
+    }
 
-        .mockup-text i {
-            color: #ff6b35;
-            margin-right: 4px;
-        }
+    .banner-right {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(4px);
+      padding: 0.4rem 0.9rem;
+      border-radius: 60px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      z-index: 2;
+    }
 
-        /* download section */
-        .download-title {
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin: 0.5rem 0 0.3rem;
-            letter-spacing: -0.5px;
-            color: #1e1e2a;
-            text-align: center;
-        }
+    .banner-right i {
+      font-size: 1rem;
+    }
 
-        .download-title span {
-            background: linear-gradient(145deg, #ff6b35, #f95a2c);
-            color: white;
-            padding: 0.1rem 0.7rem;
-            border-radius: 50px;
-            display: inline-block;
-            font-size: 1.7rem;
-        }
+    /* ----- DOWNLOAD CTA + QR ----- */
+    .download-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin: 1.5rem 0 0.8rem;
+    }
 
-        .sub-download {
-            text-align: center;
-            color: #5f534b;
-            font-weight: 400;
-            font-size: 0.95rem;
-            margin-bottom: 1.8rem;
-            letter-spacing: -0.2px;
-            border-bottom: 1px dashed #ffcdb8;
-            padding-bottom: 0.8rem;
-        }
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.8rem;
+    }
 
-        .sub-download i {
-            color: #ff6b35;
-        }
+    .btn-download {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: #1e1e2a;
+      padding: 0.7rem 1.2rem 0.7rem 1rem;
+      border-radius: 60px;
+      border: none;
+      color: white;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 6px 14px -4px rgba(0, 0, 0, 0.15);
+      flex: 1 1 140px;
+      border: 1px solid #2e2e3e;
+    }
 
-        .btn-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.9rem;
-            margin-top: 0.2rem;
-        }
+    .btn-download i {
+      font-size: 1.5rem;
+      color: #ffb08c;
+    }
 
-        .btn-download {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.8rem;
-            background: #1e1e2a;
-            padding: 1rem 0.8rem;
-            border-radius: 60px;
-            border: none;
-            color: white;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.2s ease;
-            cursor: pointer;
-            text-decoration: none;
-            box-shadow: 0 8px 18px -6px rgba(0, 0, 0, 0.2);
-            border: 1px solid #2e2e3e;
-            letter-spacing: -0.2px;
-        }
+    .btn-download.apple {
+      background: #0a0a12;
+    }
 
-        .btn-download i {
-            font-size: 1.6rem;
-            color: #ffb08c;
-        }
+    .btn-download.android {
+      background: #1e2a1e;
+      border-color: #3e5a3e;
+    }
 
-        .btn-download.apple {
-            background: #0a0a12;
-            border: 1px solid #3b3b4a;
-        }
+    .btn-download:hover {
+      transform: scale(1.02);
+      background: #2a2a3a;
+      border-color: #ff6b35;
+      box-shadow: 0 8px 18px -6px rgba(255, 107, 53, 0.25);
+    }
 
-        .btn-download.android {
-            background: #1e2a1e;
-            border: 1px solid #3e5a3e;
-        }
+    .btn-download .store-name {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      line-height: 1.2;
+    }
 
-        .btn-download:hover {
-            transform: scale(1.02);
-            background: #2a2a3a;
-            box-shadow: 0 12px 24px -8px rgba(255, 107, 53, 0.25);
-            border-color: #ff6b35;
-        }
+    .btn-download .store-name .top {
+      font-size: 0.55rem;
+      font-weight: 400;
+      opacity: 0.7;
+    }
 
-        .btn-download.apple:hover {
-            background: #16161f;
-        }
+    .btn-download .store-name .main {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
 
-        .btn-download.android:hover {
-            background: #2a3d2a;
-        }
+    /* QR section */
+    .qr-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #fcf3ed;
+      padding: 0.6rem 1rem 0.6rem 1.2rem;
+      border-radius: 60px;
+      border: 1px solid #ffe0d0;
+      margin-top: 0.4rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
 
-        .btn-download .small-text {
-            font-size: 0.7rem;
-            font-weight: 400;
-            opacity: 0.8;
-            letter-spacing: 0.3px;
-        }
+    .qr-left {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
 
-        .btn-download .store-name {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            line-height: 1.2;
-        }
+    .qr-icon-box {
+      background: white;
+      padding: 0.2rem 0.6rem;
+      border-radius: 30px;
+      font-size: 1.8rem;
+      color: #ff6b35;
+    }
 
-        .btn-download .store-name .top {
-            font-size: 0.65rem;
-            font-weight: 400;
-            opacity: 0.8;
-        }
+    .qr-text {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #3d322c;
+    }
 
-        .btn-download .store-name .main {
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
+    .qr-text i {
+      color: #ff6b35;
+      margin-right: 4px;
+    }
 
-        .qr-section {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1.2rem;
-            margin: 1.8rem 0 0.2rem;
-            background: #fcf3ed;
-            padding: 0.8rem 1rem;
-            border-radius: 60px;
-            border: 1px solid #ffe0d0;
-        }
+    .qr-text strong {
+      color: #1e1e2a;
+    }
 
-        .qr-icon {
-            background: white;
-            padding: 0.2rem 0.5rem;
-            border-radius: 30px;
-            font-size: 1.8rem;
-            color: #ff6b35;
-        }
+    .qr-code-box {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: white;
+      padding: 0.2rem 0.8rem 0.2rem 0.6rem;
+      border-radius: 40px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    }
 
-        .qr-text {
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: #3d322c;
-        }
+    .qr-code-box i {
+      font-size: 1.8rem;
+      color: #1e1e2a;
+    }
 
-        .qr-text i {
-            color: #ff6b35;
-            margin-right: 4px;
-        }
+    .qr-code-box span {
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: #4a3f3a;
+    }
 
-        .qr-text strong {
-            color: #1e1e2a;
-            font-weight: 700;
-        }
+    /* banner bottom hint (from banner.jpeg) */
+    .banner-hint {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem 1.2rem;
+      margin: 0.8rem 0 0.2rem;
+      padding: 0.5rem 0.2rem;
+      border-top: 1px solid #f5e3db;
+      border-bottom: 1px solid #f5e3db;
+      font-size: 0.7rem;
+      color: #5f534b;
+      font-weight: 500;
+    }
 
-        .footer-note {
-            margin-top: 1.4rem;
-            font-size: 0.7rem;
-            color: #938b84;
-            text-align: center;
-            border-top: 1px solid #f5e3db;
-            padding-top: 1rem;
-            letter-spacing: 0.3px;
-        }
+    .banner-hint i {
+      color: #ff6b35;
+      margin-right: 0.2rem;
+    }
 
-        .footer-note i {
-            color: #ff6b35;
-            margin: 0 4px;
-        }
+    .banner-hint .chip {
+      background: #fff1e9;
+      padding: 0.15rem 0.8rem;
+      border-radius: 40px;
+      border: 1px solid #ffded0;
+    }
 
-        /* responsive spacing */
-        @media (max-width: 450px) {
-            .app-card {
-                padding: 1.6rem 1.2rem;
-                border-radius: 36px;
-            }
-            .logo-badge {
-                font-size: 1.8rem;
-                padding: 0.4rem 0.9rem;
-            }
-            .mockup-phone {
-                width: 150px;
-            }
-            .download-title {
-                font-size: 1.4rem;
-            }
-        }
+    /* footer */
+    .footer-note {
+      margin-top: 1.2rem;
+      font-size: 0.7rem;
+      color: #938b84;
+      text-align: center;
+      border-top: 1px solid #f5e3db;
+      padding-top: 1rem;
+      letter-spacing: 0.3px;
+    }
 
-        /* tiny animation */
-        .bounce-in {
-            animation: float-up 0.6s ease-out;
-        }
+    .footer-note i {
+      color: #ff6b35;
+      margin: 0 4px;
+    }
 
-        @keyframes float-up {
-            0% { opacity: 0; transform: translateY(30px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
+    /* responsive */
+    @media (max-width: 450px) {
+      .app-card {
+        padding: 1.2rem 1rem;
+        border-radius: 36px;
+      }
+      .logo-badge {
+        font-size: 1.6rem;
+        padding: 0.3rem 0.8rem;
+      }
+      .banner-left h2 {
+        font-size: 1.2rem;
+      }
+      .btn-download {
+        flex: 1 1 120px;
+        padding: 0.6rem 0.8rem;
+        font-size: 0.8rem;
+      }
+      .qr-wrapper {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.6rem;
+      }
+      .qr-left {
+        justify-content: center;
+      }
+      .qr-code-box {
+        justify-content: center;
+      }
+    }
 
-        .badge-bh {
-            font-size: 1.2rem;
-            background: #ff6b35;
-            color: white;
-            border-radius: 40px;
-            padding: 0.1rem 0.8rem;
-            margin-left: 0.4rem;
-        }
-    </style>
+    @keyframes float-up {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .app-card {
+      animation: float-up 0.5s ease-out;
+    }
+  </style>
 </head>
 <body>
-    <div class="app-card bounce-in">
-        <!-- logo + Bh treatment -->
-        <div class="logo-area">
-            <div class="logo-badge">
-                <i class="fas fa-utensils"></i>
-                <span>Bh</span>
-                <span style="background: transparent; color: white; font-size: 0.9rem; margin-left: 0.1rem;">⏤</span>
-                <span style="background: #ff8a5c; padding: 0 0.6rem; border-radius: 40px; font-size: 1.2rem; font-weight: 600;">BHOJI</span>
-            </div>
-            <div class="tagline">
-                <i class="fas fa-leaf"></i> Your feast, fast and fresh.
-            </div>
-        </div>
-
-        <!-- mockup phone / hero -->
-        <div class="mockup-container">
-            <div class="mockup-phone">
-                <div class="mockup-screen">
-                    <div class="mockup-food-icon">
-                        <i class="fas fa-pizza-slice"></i>
-                        <i class="fas fa-hamburger"></i>
-                        <i class="fas fa-coffee"></i>
-                        <i class="fas fa-cookie-bite"></i>
-                    </div>
-                    <div class="mockup-text">
-                        <i class="fas fa-motorcycle"></i> 15 min · free delivery
-                    </div>
-                    <div style="display: flex; gap: 0.3rem; font-size: 0.65rem; background: rgba(255,255,240,0.7); padding: 0.1rem 0.6rem; border-radius: 30px;">
-                        <span>⭐ 4.8</span> <span style="opacity:0.6;">•</span> <span>🔥 Bhoji special</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- main CTA -->
-        <h2 class="download-title">
-            <span>📲</span> get the app
-        </h2>
-        <div class="sub-download">
-            <i class="fas fa-bolt"></i> order in seconds · crave delivered
-        </div>
-
-        <!-- download buttons -->
-        <div class="btn-group">
-            <!-- apple store -->
-            <a href="#" class="btn-download apple" aria-label="Download on the App Store">
-                <i class="fab fa-apple"></i>
-                <span class="store-name">
-                    <span class="top">Download on the</span>
-                    <span class="main">App Store</span>
-                </span>
-                <span style="margin-left: auto; font-size: 0.7rem; background: #ffffff22; padding: 0.2rem 0.8rem; border-radius: 60px;">
-                    <i class="fas fa-arrow-right"></i>
-                </span>
-            </a>
-            <!-- google play -->
-            <a href="#" class="btn-download android" aria-label="Get it on Google Play">
-                <i class="fab fa-google-play"></i>
-                <span class="store-name">
-                    <span class="top">GET IT ON</span>
-                    <span class="main">Google Play</span>
-                </span>
-                <span style="margin-left: auto; font-size: 0.7rem; background: #ffffff22; padding: 0.2rem 0.8rem; border-radius: 60px;">
-                    <i class="fas fa-arrow-right"></i>
-                </span>
-            </a>
-        </div>
-
-        <!-- QR / extra -->
-        <div class="qr-section">
-            <div class="qr-icon">
-                <i class="fas fa-qrcode"></i>
-            </div>
-            <div class="qr-text">
-                <i class="fas fa-camera"></i> Scan to download · <strong>BHOJI</strong>
-            </div>
-            <div style="display: flex; gap: 0.3rem; font-size: 0.9rem; background: white; padding: 0.2rem 0.8rem; border-radius: 40px;">
-                <i class="fas fa-wifi" style="color: #ff6b35;"></i>
-            </div>
-        </div>
-
-        <!-- footer -->
-        <div class="footer-note">
-            <i class="fas fa-circle" style="font-size: 0.3rem; vertical-align: middle;"></i> 
-            <span>100% foodie love ·</span> 
-            <i class="fas fa-circle" style="font-size: 0.3rem; vertical-align: middle;"></i>
-            <span> order now</span>
-            <i class="fas fa-heart" style="color: #ff6b35; margin-left: 4px;"></i>
-        </div>
+  <div class="app-card">
+    <!-- logo area: Bh + BHOJ + tagline -->
+    <div class="logo-area">
+      <div class="logo-badge">
+        <i class="fas fa-utensils"></i>
+        <span>Bh</span>
+        <span class="bh-sub">⏤</span>
+        <span style="background: #ff8a5c; padding: 0 0.6rem; border-radius: 40px; font-size: 1.1rem; font-weight: 700; color:white;">BHOJ</span>
+      </div>
+      <div class="tagline-mini">
+        <i class="fas fa-leaf"></i> feast, fast & fresh
+      </div>
     </div>
 
-    <!-- tiny js for interaction (no external deps) -->
-    <script>
-        (function() {
-            // simple interactive feedback for demo
-            const buttons = document.querySelectorAll('.btn-download');
-            buttons.forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    // haptic-like feedback 
-                    this.style.transform = 'scale(0.96)';
-                    setTimeout(() => {
-                        this.style.transform = '';
-                    }, 150);
-                    // show a friendly toast-like message (just for demo)
-                    const originalText = this.innerText;
-                    // we don't want to destroy inner structure, just a temporary overlay
-                    const store = this.querySelector('.store-name .main')?.innerText || 'App';
-                    alert(`🚀  Redirecting to ${store} ... (demo)`);
-                });
-            });
+    <!-- ===== BANNER (inspired by banner.jpeg) ===== -->
+    <div class="banner-card">
+      <div class="banner-left">
+        <div class="greeting">
+          <i class="fas fa-map-pin"></i> Deliver to <strong>Current Location</strong> <i class="fas fa-chevron-down" style="font-size: 0.6rem;"></i>
+        </div>
+        <h2>Welcome back, <br>Rahul 🐟</h2>
+        <div class="offer-tag">
+          <i class="fas fa-tag"></i> 20% off your first order
+        </div>
+      </div>
+      <div class="banner-right">
+        <i class="fas fa-clock"></i> <span>Special Offer</span>
+      </div>
+    </div>
 
-            // qr click fun
-            const qrBox = document.querySelector('.qr-section');
-            if (qrBox) {
-                qrBox.addEventListener('click', function() {
-                    alert('📱  Scan QR with your phone camera to download BHOJI app (demo)');
-                });
-                qrBox.style.cursor = 'pointer';
-            }
+    <!-- quick categories / hint (from banner) -->
+    <div class="banner-hint">
+      <span><i class="fas fa-pizza-slice"></i> Pizza</span>
+      <span><i class="fas fa-hamburger"></i> Burger</span>
+      <span><i class="fas fa-utensil-spoon"></i> Biryani</span>
+      <span><i class="fas fa-egg"></i> Chinese</span>
+      <span class="chip"><i class="fas fa-star"></i> 4.0+</span>
+      <span class="chip"><i class="fas fa-leaf"></i> Pure Veg</span>
+    </div>
 
-            // logo subtle animation
-            const logo = document.querySelector('.logo-badge');
-            if (logo) {
-                logo.addEventListener('mouseenter', function() {
-                    this.style.boxShadow = '0 8px 20px -2px rgba(255, 107, 53, 0.5)';
-                });
-                logo.addEventListener('mouseleave', function() {
-                    this.style.boxShadow = '0 8px 16px -6px rgba(255, 107, 53, 0.3)';
-                });
-            }
-        })();
-    </script>
+    <!-- ===== DOWNLOAD BUTTONS + QR ===== -->
+    <div class="download-grid">
+      <div class="cta-row">
+        <!-- Apple -->
+        <a href="#" class="btn-download apple" aria-label="Download on the App Store">
+          <i class="fab fa-apple"></i>
+          <span class="store-name">
+            <span class="top">Download on the</span>
+            <span class="main">App Store</span>
+          </span>
+          <span style="margin-left: auto; font-size: 0.7rem; background: #ffffff22; padding: 0.1rem 0.6rem; border-radius: 40px;">
+            <i class="fas fa-arrow-right"></i>
+          </span>
+        </a>
+        <!-- Google Play -->
+        <a href="#" class="btn-download android" aria-label="Get it on Google Play">
+          <i class="fab fa-google-play"></i>
+          <span class="store-name">
+            <span class="top">GET IT ON</span>
+            <span class="main">Google Play</span>
+          </span>
+          <span style="margin-left: auto; font-size: 0.7rem; background: #ffffff22; padding: 0.1rem 0.6rem; border-radius: 40px;">
+            <i class="fas fa-arrow-right"></i>
+          </span>
+        </a>
+      </div>
+
+      <!-- QR CODE section (standalone) -->
+      <div class="qr-wrapper">
+        <div class="qr-left">
+          <div class="qr-icon-box">
+            <i class="fas fa-qrcode"></i>
+          </div>
+          <div class="qr-text">
+            <i class="fas fa-camera"></i> Scan to download <strong>BHOJ</strong>
+          </div>
+        </div>
+        <div class="qr-code-box">
+          <i class="fas fa-qrcode" style="color: #ff6b35;"></i>
+          <span>QR</span>
+          <i class="fas fa-chevron-right" style="font-size: 0.6rem; opacity: 0.5;"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- extra hint: 'New restaurant! Order now...' from banner -->
+    <div style="background: #fcf3ed; border-radius: 60px; padding: 0.4rem 1rem; margin: 0.8rem 0 0.2rem; font-size: 0.7rem; color: #3d322c; display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; border: 1px solid #ffe0d0;">
+      <i class="fas fa-store" style="color: #ff6b35;"></i>
+      <span><strong>Hotel Grand</strong> · 0.0 · 30 mins · Open</span>
+      <span style="background: #ff6b35; color: white; padding: 0.05rem 0.7rem; border-radius: 40px; font-weight: 600; font-size: 0.6rem;">NEW</span>
+      <span style="opacity: 0.7;">Indian, Chinese, Biryani</span>
+      <span style="margin-left: auto; background: #ff6b3510; padding: 0.1rem 0.6rem; border-radius: 40px; border:1px solid #ffcdb8;"><i class="fas fa-gift"></i> 20% off</span>
+    </div>
+
+    <!-- footer nav (like bottom bar) -->
+    <div style="display: flex; justify-content: space-around; margin-top: 1.2rem; padding-top: 0.6rem; border-top: 1px solid #f0e0d8; color: #6b5f57; font-size: 0.7rem; font-weight: 500;">
+      <span><i class="fas fa-home" style="color: #ff6b35;"></i> Home</span>
+      <span><i class="fas fa-shopping-cart"></i> Cart</span>
+      <span><i class="fas fa-clipboard-list"></i> Orders</span>
+      <span><i class="fas fa-tag"></i> Offers</span>
+      <span><i class="fas fa-user"></i> Profile</span>
+    </div>
+
+    <div class="footer-note">
+      <i class="fas fa-circle" style="font-size: 0.3rem; vertical-align: middle;"></i> 
+      <span>BHOJ · food delivery</span> 
+      <i class="fas fa-circle" style="font-size: 0.3rem; vertical-align: middle;"></i>
+      <span> order now</span>
+      <i class="fas fa-heart" style="color: #ff6b35; margin-left: 4px;"></i>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      // interactive demo: download buttons
+      const btns = document.querySelectorAll('.btn-download');
+      btns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          this.style.transform = 'scale(0.95)';
+          setTimeout(() => this.style.transform = '', 150);
+          const store = this.querySelector('.store-name .main')?.innerText || 'App';
+          alert(`🚀  Redirecting to ${store} ... (demo)`);
+        });
+      });
+
+      // QR click
+      const qrWrapper = document.querySelector('.qr-wrapper');
+      if (qrWrapper) {
+        qrWrapper.addEventListener('click', function() {
+          alert('📱  Scan QR code with your phone camera to download BHOJ app (demo)');
+        });
+        qrWrapper.style.cursor = 'pointer';
+      }
+
+      // banner hint chips interaction (just for fun)
+      const chips = document.querySelectorAll('.banner-hint .chip, .banner-hint span');
+      chips.forEach(chip => {
+        chip.addEventListener('click', function() {
+          this.style.backgroundColor = '#ff6b3520';
+          setTimeout(() => this.style.backgroundColor = '', 200);
+        });
+        if (!chip.classList.contains('chip')) {
+          chip.style.cursor = 'default';
+        }
+      });
+    })();
+  </script>
 </body>
 </html>

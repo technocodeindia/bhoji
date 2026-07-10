@@ -3,563 +3,630 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>Bhoj · Download App</title>
-  <!-- Font & Icons -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <title>Bhoji · Food Delivery</title>
+  <!-- Font Awesome (free icons) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     }
 
     body {
-      background: #faf3ed;  /* warm, food-delivery vibe */
-      font-family: 'Inter', sans-serif;
+      background: #fbf8f3;
       display: flex;
-      flex-direction: column;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       min-height: 100vh;
-      padding: 1.2rem 0.8rem;
-      color: #1e1e2a;
+      padding: 1.5rem;
     }
 
-    .app-card {
-      max-width: 440px;
+    /* card container – feels like a play store card */
+    .play-card {
+      max-width: 1100px;
       width: 100%;
-      background: #ffffff;
-      border-radius: 48px 48px 32px 32px;
-      box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.15), 0 8px 20px -6px rgba(0, 0, 0, 0.05);
-      padding: 1.8rem 1.5rem 2rem;
+      background: white;
+      border-radius: 48px 48px 40px 40px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08), 0 8px 24px rgba(0, 0, 0, 0.04);
+      padding: 2rem 2.5rem;
       transition: all 0.2s ease;
-      border: 1px solid rgba(255, 215, 190, 0.3);
     }
 
-    /* ----- LOGO (Bh + BHOJ) ----- */
-    .logo-area {
+    /* header with logo + tagline */
+    .app-header {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      margin-bottom: 1rem;
+      gap: 1rem;
       flex-wrap: wrap;
-      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .logo-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
     }
 
     .logo-badge {
+      background: #f1592b;
+      width: 60px;
+      height: 60px;
+      border-radius: 18px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.2rem;
-      background: #ff6b35;
-      padding: 0.4rem 1rem 0.4rem 0.8rem;
-      border-radius: 60px;
       color: white;
-      font-weight: 700;
-      font-size: 2rem;
-      letter-spacing: -0.5px;
-      box-shadow: 0 6px 14px -4px rgba(255, 107, 53, 0.35);
-    }
-
-    .logo-badge i {
-      font-size: 1.6rem;
-      color: #fff6e5;
-      margin-right: 0.1rem;
-    }
-
-    .logo-badge span {
-      background: white;
-      color: #ff6b35;
-      font-size: 1.5rem;
       font-weight: 800;
-      padding: 0 0.3rem;
-      border-radius: 30px;
-      line-height: 1.2;
-      margin-left: 0.1rem;
+      font-size: 28px;
+      letter-spacing: -0.5px;
+      box-shadow: 0 8px 16px rgba(241, 89, 43, 0.25);
+      flex-shrink: 0;
     }
 
-    .logo-badge .bh-sub {
-      background: transparent;
-      color: white;
-      font-size: 0.9rem;
-      font-weight: 500;
-      padding: 0 0.2rem;
-      letter-spacing: 0.3px;
-    }
-
-    .tagline-mini {
-      font-size: 0.75rem;
-      font-weight: 500;
-      color: #4a3f3a;
-      background: #fff1e9;
-      padding: 0.3rem 1rem;
-      border-radius: 40px;
-      border: 1px solid #ffded0;
-      white-space: nowrap;
-    }
-
-    .tagline-mini i {
-      color: #ff6b35;
-      margin-right: 4px;
-    }
-
-    /* ----- BANNER (inspired by Swiggy/Zomato) ----- */
-    .banner-card {
-      background: linear-gradient(145deg, #ff7a4a, #e65c2e);
-      border-radius: 28px;
-      padding: 1rem 1.2rem 0.8rem;
-      margin: 0.6rem 0 1.2rem;
-      color: white;
-      box-shadow: 0 10px 20px -6px rgba(255, 107, 53, 0.3);
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .banner-card::after {
-      content: "🍽️";
-      position: absolute;
-      right: -10px;
-      bottom: -10px;
-      font-size: 5rem;
-      opacity: 0.15;
-      transform: rotate(10deg);
-    }
-
-    .banner-left {
+    .logo-text {
       display: flex;
       flex-direction: column;
-      gap: 0.2rem;
-      z-index: 2;
     }
 
-    .banner-left .greeting {
-      font-size: 0.8rem;
-      font-weight: 400;
-      opacity: 0.9;
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-    }
-
-    .banner-left .greeting i {
-      font-size: 0.9rem;
-    }
-
-    .banner-left h2 {
-      font-size: 1.5rem;
+    .logo-text h1 {
+      font-size: 2rem;
       font-weight: 700;
-      letter-spacing: -0.3px;
-      line-height: 1.2;
+      letter-spacing: -0.5px;
+      color: #1e1e1e;
+      line-height: 1;
     }
 
-    .banner-left .offer-tag {
-      background: rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(4px);
-      padding: 0.2rem 1rem;
-      border-radius: 40px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      display: inline-block;
-      width: fit-content;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      margin-top: 0.2rem;
-    }
-
-    .banner-right {
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(4px);
-      padding: 0.4rem 0.9rem;
-      border-radius: 60px;
-      font-size: 0.75rem;
+    .logo-text .sub {
+      color: #6b5e4f;
       font-weight: 500;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      z-index: 2;
+      font-size: 0.9rem;
+      letter-spacing: 0.3px;
+      margin-top: 4px;
     }
 
-    .banner-right i {
-      font-size: 1rem;
+    .tagline {
+      margin-left: auto;
+      background: #fef1e9;
+      padding: 0.5rem 1.2rem;
+      border-radius: 60px;
+      font-weight: 500;
+      color: #b4532b;
+      font-size: 0.95rem;
+      white-space: nowrap;
+      border: 1px solid #fadbcb;
     }
 
-    /* ----- DOWNLOAD CTA + QR ----- */
-    .download-grid {
+    .tagline i {
+      margin-right: 6px;
+      color: #f1592b;
+    }
+
+    /* main grid: left (info) + right (screenshots) */
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    /* left side – app info, CTA, features */
+    .app-info {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
-      margin: 1.5rem 0 0.8rem;
     }
 
-    .cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.8rem;
+    .app-badge {
+      display: inline-block;
+      background: #e8f0e6;
+      color: #1f6e43;
+      font-weight: 600;
+      font-size: 0.8rem;
+      padding: 0.25rem 1rem;
+      border-radius: 60px;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.75rem;
+      width: fit-content;
+      border: 1px solid #bcd9b5;
     }
 
-    .btn-download {
+    .app-info h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #1e1e1e;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+    }
+
+    .app-info .desc {
+      color: #3e3a34;
+      font-size: 1.05rem;
+      line-height: 1.5;
+      max-width: 90%;
+      margin-bottom: 1.8rem;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .feature-item {
       display: flex;
       align-items: center;
       gap: 0.6rem;
-      background: #1e1e2a;
-      padding: 0.7rem 1.2rem 0.7rem 1rem;
+      font-size: 0.95rem;
+      color: #2c2a27;
+    }
+
+    .feature-item i {
+      color: #f1592b;
+      width: 20px;
+      font-size: 1.1rem;
+    }
+
+    .offer-badge {
+      background: #fef0d9;
       border-radius: 60px;
-      border: none;
-      color: white;
+      padding: 0.5rem 1.2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
       font-weight: 600;
+      color: #a3491e;
       font-size: 0.9rem;
-      transition: all 0.2s ease;
+      border: 1px solid #fad2b3;
+      margin-bottom: 2rem;
+      width: fit-content;
+    }
+
+    .offer-badge i {
+      color: #f1592b;
+    }
+
+    .cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .play-btn {
+      background: #1e1e1e;
+      color: white;
+      border: none;
+      padding: 0.9rem 2.2rem;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
       cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      transition: 0.2s;
       text-decoration: none;
-      box-shadow: 0 6px 14px -4px rgba(0, 0, 0, 0.15);
-      flex: 1 1 140px;
-      border: 1px solid #2e2e3e;
     }
 
-    .btn-download i {
-      font-size: 1.5rem;
-      color: #ffb08c;
+    .play-btn i {
+      font-size: 1.4rem;
     }
 
-    .btn-download.apple {
-      background: #0a0a12;
-    }
-
-    .btn-download.android {
-      background: #1e2a1e;
-      border-color: #3e5a3e;
-    }
-
-    .btn-download:hover {
+    .play-btn:hover {
+      background: #f1592b;
       transform: scale(1.02);
-      background: #2a2a3a;
-      border-color: #ff6b35;
-      box-shadow: 0 8px 18px -6px rgba(255, 107, 53, 0.25);
+      box-shadow: 0 12px 28px rgba(241, 89, 43, 0.3);
     }
 
-    .btn-download .store-name {
+    .qr-hint {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #5e5548;
+      font-size: 0.9rem;
+    }
+
+    .qr-hint i {
+      font-size: 1.5rem;
+      color: #2b2b2b;
+    }
+
+    /* right side – screenshot mockup */
+    .screenshot-area {
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
-      line-height: 1.2;
+      gap: 1.8rem;
     }
 
-    .btn-download .store-name .top {
-      font-size: 0.55rem;
-      font-weight: 400;
-      opacity: 0.7;
-    }
-
-    .btn-download .store-name .main {
-      font-size: 0.9rem;
-      font-weight: 600;
-    }
-
-    /* QR section */
-    .qr-wrapper {
+    .screenshot-showcase {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: #fcf3ed;
-      padding: 0.6rem 1rem 0.6rem 1.2rem;
-      border-radius: 60px;
-      border: 1px solid #ffe0d0;
-      margin-top: 0.4rem;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-
-    .qr-left {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-    }
-
-    .qr-icon-box {
-      background: white;
-      padding: 0.2rem 0.6rem;
-      border-radius: 30px;
-      font-size: 1.8rem;
-      color: #ff6b35;
-    }
-
-    .qr-text {
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: #3d322c;
-    }
-
-    .qr-text i {
-      color: #ff6b35;
-      margin-right: 4px;
-    }
-
-    .qr-text strong {
-      color: #1e1e2a;
-    }
-
-    .qr-code-box {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      background: white;
-      padding: 0.2rem 0.8rem 0.2rem 0.6rem;
-      border-radius: 40px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-    }
-
-    .qr-code-box i {
-      font-size: 1.8rem;
-      color: #1e1e2a;
-    }
-
-    .qr-code-box span {
-      font-size: 0.65rem;
-      font-weight: 600;
-      color: #4a3f3a;
-    }
-
-    /* banner bottom hint (from banner.jpeg) */
-    .banner-hint {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
       justify-content: center;
-      gap: 0.6rem 1.2rem;
-      margin: 0.8rem 0 0.2rem;
-      padding: 0.5rem 0.2rem;
-      border-top: 1px solid #f5e3db;
-      border-bottom: 1px solid #f5e3db;
-      font-size: 0.7rem;
-      color: #5f534b;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .mockup-phone {
+      background: #f2ede6;
+      border-radius: 34px;
+      padding: 12px 8px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06), 0 4px 12px rgba(0, 0, 0, 0.02);
+      border: 1px solid rgba(0,0,0,0.02);
+      transition: 0.15s ease;
+      flex: 0 1 auto;
+    }
+
+    .mockup-phone img {
+      display: block;
+      width: 140px;
+      height: auto;
+      border-radius: 24px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+      background: white;
+      border: 1px solid #e4ddd4;
+    }
+
+    .screenshot-caption {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      margin-top: 0.2rem;
+      color: #4b453e;
+      font-size: 0.8rem;
       font-weight: 500;
+      letter-spacing: 0.2px;
     }
 
-    .banner-hint i {
-      color: #ff6b35;
-      margin-right: 0.2rem;
+    .screenshot-caption span i {
+      margin-right: 4px;
+      color: #f1592b;
     }
 
-    .banner-hint .chip {
-      background: #fff1e9;
-      padding: 0.15rem 0.8rem;
-      border-radius: 40px;
-      border: 1px solid #ffded0;
+    .rating-mini {
+      background: #f9f3ec;
+      padding: 0.4rem 1.2rem;
+      border-radius: 60px;
+      font-size: 0.8rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid #e2d7cb;
+      color: #3a322b;
     }
 
-    /* footer */
-    .footer-note {
-      margin-top: 1.2rem;
-      font-size: 0.7rem;
-      color: #938b84;
-      text-align: center;
-      border-top: 1px solid #f5e3db;
-      padding-top: 1rem;
-      letter-spacing: 0.3px;
+    .rating-mini i {
+      color: #f5b342;
     }
 
-    .footer-note i {
-      color: #ff6b35;
-      margin: 0 4px;
+    /* micro footer */
+    .app-footer {
+      margin-top: 2.8rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid #eee8e0;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      align-items: center;
+      font-size: 0.8rem;
+      color: #6f655b;
+    }
+
+    .footer-links span {
+      margin-right: 1.8rem;
+    }
+
+    .footer-links i {
+      margin-right: 4px;
+      color: #b3a69a;
     }
 
     /* responsive */
-    @media (max-width: 450px) {
-      .app-card {
-        padding: 1.2rem 1rem;
-        border-radius: 36px;
+    @media (max-width: 820px) {
+      .play-card {
+        padding: 1.5rem;
+      }
+      .content-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .app-info .desc {
+        max-width: 100%;
+      }
+      .feature-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .tagline {
+        margin-left: 0;
+        white-space: normal;
+        font-size: 0.85rem;
+        padding: 0.3rem 1rem;
+      }
+      .logo-text h1 {
+        font-size: 1.7rem;
+      }
+      .mockup-phone img {
+        width: 120px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .play-card {
+        padding: 1.2rem;
+        border-radius: 32px;
+      }
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+      .cta-group {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .play-btn {
+        width: 100%;
+        justify-content: center;
+      }
+      .mockup-phone img {
+        width: 100px;
+      }
+      .screenshot-showcase {
+        gap: 0.5rem;
       }
       .logo-badge {
-        font-size: 1.6rem;
-        padding: 0.3rem 0.8rem;
-      }
-      .banner-left h2 {
-        font-size: 1.2rem;
-      }
-      .btn-download {
-        flex: 1 1 120px;
-        padding: 0.6rem 0.8rem;
-        font-size: 0.8rem;
-      }
-      .qr-wrapper {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0.6rem;
-      }
-      .qr-left {
-        justify-content: center;
-      }
-      .qr-code-box {
-        justify-content: center;
+        width: 50px;
+        height: 50px;
+        font-size: 22px;
       }
     }
 
-    @keyframes float-up {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
+    /* screenshot images – we use emulated screenshots with gradient + content (since no real image) */
+    .mockup-screen {
+      background: white;
+      border-radius: 20px;
+      padding: 10px 6px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 0.6rem;
+      color: #1e1e1e;
+      width: 140px;
+      box-shadow: inset 0 0 0 1px #e5ddd4;
     }
 
-    .app-card {
-      animation: float-up 0.5s ease-out;
+    /* we style inner screenshot mock content */
+    .mock-content {
+      background: #fcf8f2;
+      width: 100%;
+      border-radius: 16px;
+      padding: 8px 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .mock-header {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      padding: 0 4px;
+      font-weight: 600;
+      font-size: 0.5rem;
+      color: #3f3a34;
+    }
+
+    .mock-card {
+      background: white;
+      border-radius: 8px;
+      width: 100%;
+      padding: 6px 4px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.02);
+      border: 1px solid #efe8e0;
+      margin: 2px 0;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .mock-card .food-icon {
+      background: #f1592b20;
+      border-radius: 30px;
+      padding: 2px 6px;
+      font-size: 0.45rem;
+      font-weight: 600;
+      color: #b14a24;
+    }
+
+    .mock-bottom {
+      margin-top: 3px;
+      background: #f1592b10;
+      padding: 4px 8px;
+      border-radius: 20px;
+      font-size: 0.45rem;
+      font-weight: 600;
+      color: #b4532b;
+      width: 100%;
+      text-align: center;
+      border: 1px dashed #f1592b40;
+    }
+
+    .mock-banner {
+      background: #f1592b;
+      color: white;
+      font-weight: 600;
+      padding: 3px 0;
+      border-radius: 30px;
+      width: 100%;
+      text-align: center;
+      font-size: 0.45rem;
+    }
+
+    /* custom screenshots with different style */
+    .mockup-phone:nth-child(2) .mock-content .mock-card .food-icon {
+      background: #20b15a20;
+      color: #1f7a3f;
     }
   </style>
 </head>
 <body>
-  <div class="app-card">
-    <!-- logo area: Bh + BHOJ + tagline -->
-    <div class="logo-area">
-      <div class="logo-badge">
-        <i class="fas fa-utensils"></i>
-        <span>Bh</span>
-        <span class="bh-sub">⏤</span>
-        <span style="background: #ff8a5c; padding: 0 0.6rem; border-radius: 40px; font-size: 1.1rem; font-weight: 700; color:white;">BHOJ</span>
-      </div>
-      <div class="tagline-mini">
-        <i class="fas fa-leaf"></i> feast, fast & fresh
-      </div>
-    </div>
 
-    <!-- ===== BANNER (inspired by banner.jpeg) ===== -->
-    <div class="banner-card">
-      <div class="banner-left">
-        <div class="greeting">
-          <i class="fas fa-map-pin"></i> Deliver to <strong>Current Location</strong> <i class="fas fa-chevron-down" style="font-size: 0.6rem;"></i>
-        </div>
-        <h2>Welcome back, <br>Rahul 🐟</h2>
-        <div class="offer-tag">
-          <i class="fas fa-tag"></i> 20% off your first order
-        </div>
-      </div>
-      <div class="banner-right">
-        <i class="fas fa-clock"></i> <span>Special Offer</span>
+<div class="play-card">
+
+  <!-- header with logo + tagline -->
+  <div class="app-header">
+    <div class="logo-wrapper">
+      <div class="logo-badge">Bh</div>
+      <div class="logo-text">
+        <h1>Bhoji</h1>
+        <span class="sub"><i class="fas fa-map-pin" style="margin-right: 4px;"></i> food delivery</span>
       </div>
     </div>
-
-    <!-- quick categories / hint (from banner) -->
-    <div class="banner-hint">
-      <span><i class="fas fa-pizza-slice"></i> Pizza</span>
-      <span><i class="fas fa-hamburger"></i> Burger</span>
-      <span><i class="fas fa-utensil-spoon"></i> Biryani</span>
-      <span><i class="fas fa-egg"></i> Chinese</span>
-      <span class="chip"><i class="fas fa-star"></i> 4.0+</span>
-      <span class="chip"><i class="fas fa-leaf"></i> Pure Veg</span>
-    </div>
-
-    <!-- ===== DOWNLOAD BUTTONS + QR ===== -->
-    <div class="download-grid">
-      <div class="cta-row">
-        <!-- Apple -->
-        <a href="#" class="btn-download apple" aria-label="Download on the App Store">
-          <i class="fab fa-apple"></i>
-          <span class="store-name">
-            <span class="top">Download on the</span>
-            <span class="main">App Store</span>
-          </span>
-          <span style="margin-left: auto; font-size: 0.7rem; background: #ffffff22; padding: 0.1rem 0.6rem; border-radius: 40px;">
-            <i class="fas fa-arrow-right"></i>
-          </span>
-        </a>
-        <!-- Google Play -->
-        <a href="#" class="btn-download android" aria-label="Get it on Google Play">
-          <i class="fab fa-google-play"></i>
-          <span class="store-name">
-            <span class="top">GET IT ON</span>
-            <span class="main">Google Play</span>
-          </span>
-          <span style="margin-left: auto; font-size: 0.7rem; background: #ffffff22; padding: 0.1rem 0.6rem; border-radius: 40px;">
-            <i class="fas fa-arrow-right"></i>
-          </span>
-        </a>
-      </div>
-
-      <!-- QR CODE section (standalone) -->
-      <div class="qr-wrapper">
-        <div class="qr-left">
-          <div class="qr-icon-box">
-            <i class="fas fa-qrcode"></i>
-          </div>
-          <div class="qr-text">
-            <i class="fas fa-camera"></i> Scan to download <strong>BHOJ</strong>
-          </div>
-        </div>
-        <div class="qr-code-box">
-          <i class="fas fa-qrcode" style="color: #ff6b35;"></i>
-          <span>QR</span>
-          <i class="fas fa-chevron-right" style="font-size: 0.6rem; opacity: 0.5;"></i>
-        </div>
-      </div>
-    </div>
-
-    <!-- extra hint: 'New restaurant! Order now...' from banner -->
-    <div style="background: #fcf3ed; border-radius: 60px; padding: 0.4rem 1rem; margin: 0.8rem 0 0.2rem; font-size: 0.7rem; color: #3d322c; display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; border: 1px solid #ffe0d0;">
-      <i class="fas fa-store" style="color: #ff6b35;"></i>
-      <span><strong>Hotel Grand</strong> · 0.0 · 30 mins · Open</span>
-      <span style="background: #ff6b35; color: white; padding: 0.05rem 0.7rem; border-radius: 40px; font-weight: 600; font-size: 0.6rem;">NEW</span>
-      <span style="opacity: 0.7;">Indian, Chinese, Biryani</span>
-      <span style="margin-left: auto; background: #ff6b3510; padding: 0.1rem 0.6rem; border-radius: 40px; border:1px solid #ffcdb8;"><i class="fas fa-gift"></i> 20% off</span>
-    </div>
-
-    <!-- footer nav (like bottom bar) -->
-    <div style="display: flex; justify-content: space-around; margin-top: 1.2rem; padding-top: 0.6rem; border-top: 1px solid #f0e0d8; color: #6b5f57; font-size: 0.7rem; font-weight: 500;">
-      <span><i class="fas fa-home" style="color: #ff6b35;"></i> Home</span>
-      <span><i class="fas fa-shopping-cart"></i> Cart</span>
-      <span><i class="fas fa-clipboard-list"></i> Orders</span>
-      <span><i class="fas fa-tag"></i> Offers</span>
-      <span><i class="fas fa-user"></i> Profile</span>
-    </div>
-
-    <div class="footer-note">
-      <i class="fas fa-circle" style="font-size: 0.3rem; vertical-align: middle;"></i> 
-      <span>BHOJ · food delivery</span> 
-      <i class="fas fa-circle" style="font-size: 0.3rem; vertical-align: middle;"></i>
-      <span> order now</span>
-      <i class="fas fa-heart" style="color: #ff6b35; margin-left: 4px;"></i>
+    <div class="tagline">
+      <i class="fas fa-clock"></i> Your feast, fast & fresh
     </div>
   </div>
 
-  <script>
-    (function() {
-      // interactive demo: download buttons
-      const btns = document.querySelectorAll('.btn-download');
-      btns.forEach(btn => {
-        btn.addEventListener('click', function(e) {
-          e.preventDefault();
-          this.style.transform = 'scale(0.95)';
-          setTimeout(() => this.style.transform = '', 150);
-          const store = this.querySelector('.store-name .main')?.innerText || 'App';
-          alert(`🚀  Redirecting to ${store} ... (demo)`);
-        });
-      });
+  <!-- main grid -->
+  <div class="content-grid">
+    <!-- left column -->
+    <div class="app-info">
+      <div class="app-badge"><i class="fas fa-check-circle"></i> available on Google Play</div>
+      <h2>Deliver delight<br>to your door.</h2>
+      <p class="desc">
+        <i class="fas fa-tag" style="color: #f1592b; margin-right: 6px;"></i>
+        Get <strong>20% off</strong> your first order. Explore biryani, pizza, South Indian & more.
+      </p>
 
-      // QR click
-      const qrWrapper = document.querySelector('.qr-wrapper');
-      if (qrWrapper) {
-        qrWrapper.addEventListener('click', function() {
-          alert('📱  Scan QR code with your phone camera to download BHOJ app (demo)');
-        });
-        qrWrapper.style.cursor = 'pointer';
-      }
+      <div class="feature-grid">
+        <div class="feature-item"><i class="fas fa-bolt"></i> Fast delivery</div>
+        <div class="feature-item"><i class="fas fa-utensils"></i> 100+ restaurants</div>
+        <div class="feature-item"><i class="fas fa-star"></i> 4.0+ rating</div>
+        <div class="feature-item"><i class="fas fa-leaf"></i> Pure veg options</div>
+      </div>
 
-      // banner hint chips interaction (just for fun)
-      const chips = document.querySelectorAll('.banner-hint .chip, .banner-hint span');
-      chips.forEach(chip => {
-        chip.addEventListener('click', function() {
-          this.style.backgroundColor = '#ff6b3520';
-          setTimeout(() => this.style.backgroundColor = '', 200);
-        });
-        if (!chip.classList.contains('chip')) {
-          chip.style.cursor = 'default';
-        }
+      <div class="offer-badge">
+        <i class="fas fa-fire"></i> Limited time: 20% off · order now
+      </div>
+
+      <!-- CTA button -->
+      <div class="cta-group">
+        <a href="#" class="play-btn" onclick="alert('🚀 Redirecting to Google Play Store (Bhoji app)')">
+          <i class="fab fa-google-play"></i> Download
+        </a>
+        <span class="qr-hint">
+          <i class="fas fa-qrcode"></i> scan to download
+        </span>
+      </div>
+
+      <!-- small extra: user welcome from banner -->
+      <div style="margin-top: 1.2rem; display: flex; gap: 0.8rem; flex-wrap: wrap; background: #f7f2ea; padding: 0.6rem 1rem; border-radius: 60px; width: fit-content; border: 1px solid #e6ddd2;">
+        <span style="font-weight: 500; color:#1e1a16;"><i class="fas fa-user-circle" style="color: #f1592b;"></i> Rahul 🐟</span>
+        <span style="color:#4f463d;"><i class="fas fa-location-dot"></i> 20.7748, 86.7194</span>
+        <span style="background: #e3d8cd; padding: 0 10px; border-radius: 40px; font-size:0.7rem; display: flex; align-items: center;"><i class="fas fa-chevron-down"></i> Current</span>
+      </div>
+    </div>
+
+    <!-- right column – screenshot mockups (emulated) -->
+    <div class="screenshot-area">
+      <div class="screenshot-showcase">
+        <!-- screenshot 1: home / menu -->
+        <div class="mockup-phone">
+          <div class="mockup-screen">
+            <div class="mock-content">
+              <div class="mock-header"><span>🍕 Bhoji</span> <span><i class="fas fa-search" style="font-size:0.5rem;"></i></span></div>
+              <div class="mock-card"><span class="food-icon">🍔</span> Burger · 4.5</div>
+              <div class="mock-card"><span class="food-icon">🍛</span> Biryani · 4.8</div>
+              <div class="mock-card"><span class="food-icon">🌯</span> Chinese · 4.2</div>
+              <div class="mock-banner">20% off</div>
+              <div style="display: flex; justify-content: space-between; width:100%; font-size: 0.4rem; padding: 0 4px; margin-top:4px; color:#6b5f53;"><span><i class="fas fa-clock"></i> 30 min</span><span>⭐ 4.0+</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- screenshot 2: restaurant detail / offers -->
+        <div class="mockup-phone">
+          <div class="mockup-screen">
+            <div class="mock-content">
+              <div class="mock-header"><span>🏨 Hotel Grand</span> <span>⏱️</span></div>
+              <div style="background: #efe7dd; border-radius: 30px; width:100%; text-align: center; padding:3px 0; font-size:0.45rem; font-weight:600; color:#3c342d;">New restaurant</div>
+              <div class="mock-card" style="flex-direction: column; align-items: flex-start; gap:1px;"><span><i class="fas fa-utensils"></i> Indian · Chinese · Biryani</span> <span style="font-size:0.4rem; color:#5a4e41;">Seafood · Healthy</span></div>
+              <div style="display: flex; gap: 4px; width:100%; justify-content: space-around; font-size:0.4rem; background: #faf4ed; border-radius: 30px; padding: 4px 0;"><span><i class="fas fa-clock"></i> Open</span><span><i class="fas fa-tag"></i> 20% off</span></div>
+              <div class="mock-bottom">Order now & get 20% off</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- screenshot 3: home screen with categories -->
+        <div class="mockup-phone">
+          <div class="mockup-screen">
+            <div class="mock-content">
+              <div class="mock-header"><span>📍 Deliver to</span> <span><i class="fas fa-map-pin"></i></span></div>
+              <div style="display:flex; gap:2px; flex-wrap:wrap; justify-content:center; width:100%;">
+                <span style="background:#f1592b10; padding:0 6px; border-radius:30px; font-size:0.4rem; border:1px solid #f1592b30;">Pizza</span>
+                <span style="background:#f1592b10; padding:0 6px; border-radius:30px; font-size:0.4rem;">Burger</span>
+                <span style="background:#f1592b10; padding:0 6px; border-radius:30px; font-size:0.4rem;">Biryani</span>
+                <span style="background:#f1592b10; padding:0 6px; border-radius:30px; font-size:0.4rem;">Chinese</span>
+                <span style="background:#f1592b10; padding:0 6px; border-radius:30px; font-size:0.4rem;">South Indian</span>
+              </div>
+              <div style="background:#1e1e1e; color:white; width:100%; text-align:center; border-radius:40px; padding:4px 0; font-size:0.5rem;"><i class="fas fa-search"></i> Search restaurants...</div>
+              <div style="display:flex; width:100%; justify-content:space-between; font-size:0.4rem; padding:0 2px;"><span>Pure Veg</span> <span>Open Now</span> <span>4.0+</span> <span>Offers</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- caption with rating and screenshots label -->
+      <div class="screenshot-caption">
+        <span><i class="fas fa-mobile-alt"></i> Home · Menu</span>
+        <span><i class="fas fa-store"></i> Restaurant</span>
+        <span><i class="fas fa-list"></i> Categories</span>
+      </div>
+      <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 0.2rem;">
+        <span class="rating-mini"><i class="fas fa-star"></i> 4.7 · 2k+ reviews</span>
+        <span class="rating-mini"><i class="fas fa-download"></i> 50k+ downloads</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- footer with navigation hints -->
+  <div class="app-footer">
+    <div class="footer-links">
+      <span><i class="fas fa-home"></i> Home</span>
+      <span><i class="fas fa-shopping-cart"></i> Cart</span>
+      <span><i class="fas fa-clipboard-list"></i> Orders</span>
+      <span><i class="fas fa-percent"></i> Offers</span>
+      <span><i class="fas fa-user"></i> Profile</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 6px;">
+      <i class="fas fa-shield-alt" style="color: #5f8b4b;"></i> 
+      <span>Google Play · Bhoji v2.4</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- small JS for interactivity -->
+<script>
+  (function() {
+    // subtle console greeting
+    console.log('🍽️ Bhoji · Your feast, fast & fresh.');
+    // attach to any .play-btn (already has alert)
+    // additional: hover effect for mockup
+    const phones = document.querySelectorAll('.mockup-phone');
+    phones.forEach(phone => {
+      phone.addEventListener('mouseenter', () => {
+        phone.style.transform = 'translateY(-4px)';
+        phone.style.boxShadow = '0 20px 40px rgba(0,0,0,0.06)';
       });
-    })();
-  </script>
+      phone.addEventListener('mouseleave', () => {
+        phone.style.transform = 'translateY(0)';
+        phone.style.boxShadow = 'none';
+      });
+    });
+  })();
+</script>
+
+<!-- note: all icons from FontAwesome, no external images. Logo "Bh" is styled inline -->
 </body>
 </html>
